@@ -1,0 +1,43 @@
+sudo apt update
+
+# Install AWS-CLI
+# apt install zip -y && apt install curl -y
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+# Install the Kubernetes command-line tool
+
+sudo snap install kubectl --classic
+
+
+# Install eksctl using the following command:
+
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+
+sudo mv /tmp/eksctl /usr/local/bin
+
+eksctl version
+
+## Launching an EKS Cluster:
+
+# Configure AWS CLI:
+
+aws configure			[ Give the access key , secret access key, region and format ]
+
+eksctl create cluster --name kubefirtst --region us-east-1
+
+aws eks --region us-east-1 update-kubeconfig --name kubefirst
+
+# verify Cluster
+
+kubectl get nodes
+
+
+## also if we want to delete the EKS Cluster
+
+## eksctl delete cluster --name kubefirst
+
+
+
